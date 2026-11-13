@@ -3,6 +3,8 @@ locale: zh-CN
 ---
 # 智谱联网搜索
 
+[English](README.md) | **简体中文**
+
 调用智谱 Web Search API 搜索网页，以 JSON 返回结果，供智能体和检索流程使用。
 
 ## 渠道设置

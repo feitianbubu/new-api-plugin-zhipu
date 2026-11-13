@@ -4,6 +4,8 @@ translations:
 ---
 # Zhipu Web Search
 
+**English** | [简体中文](README.zh-CN.md)
+
 Searches the web with Zhipu's Web Search API and returns the results as JSON, for agents and retrieval pipelines.
 
 ## Channel setup
