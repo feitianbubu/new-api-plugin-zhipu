@@ -1,0 +1,191 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "智谱联网搜索",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v1/web_search": {
+      "post": {
+        "summary": "联网搜索",
+        "description": "联网搜索，返回归一化的结果列表。未在此列出的字段会原样转给智谱；此处列出的字段优先于它对应的智谱字段。\n\n智谱参数参考文档: https://docs.bigmodel.cn/api-reference/%E5%B7%A5%E5%85%B7-api/%E7%BD%91%E7%BB%9C%E6%90%9C%E7%B4%A2",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "model",
+                  "query"
+                ],
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "enum": [
+                      "search_std",
+                      "search_pro",
+                      "search_pro_sogou",
+                      "search_pro_quark"
+                    ],
+                    "description": "搜索引擎",
+                    "example": "search_std"
+                  },
+                  "query": {
+                    "type": "string",
+                    "description": "搜索内容",
+                    "example": "今天上海天气"
+                  },
+                  "max_results": {
+                    "type": "integer",
+                    "description": "返回条数",
+                    "example": 10
+                  },
+                  "include_domains": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "限定搜索的域名，只使用第一个",
+                    "example": [
+                      "www.example.com"
+                    ]
+                  },
+                  "recency": {
+                    "type": "string",
+                    "enum": [
+                      "oneDay",
+                      "oneWeek",
+                      "oneMonth",
+                      "oneYear",
+                      "noLimit"
+                    ],
+                    "description": "时间范围"
+                  },
+                  "content_size": {
+                    "type": "string",
+                    "enum": [
+                      "medium",
+                      "high"
+                    ],
+                    "description": "单条结果的内容长度"
+                  },
+                  "search_intent": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "是否先做搜索意图识别"
+                  },
+                  "request_id": {
+                    "type": "string"
+                  },
+                  "user_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "搜索结果",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "created": {
+                      "type": "integer"
+                    },
+                    "request_id": {
+                      "type": "string"
+                    },
+                    "provider": {
+                      "type": "string",
+                      "example": "zhipu"
+                    },
+                    "intents": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "query": {
+                            "type": "string"
+                          },
+                          "intent": {
+                            "type": "string",
+                            "example": "SEARCH_ALWAYS"
+                          },
+                          "keywords": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "content": {
+                            "type": "string"
+                          },
+                          "site": {
+                            "type": "string",
+                            "description": "网站名称"
+                          },
+                          "icon": {
+                            "type": "string"
+                          },
+                          "refer": {
+                            "type": "string",
+                            "description": "角标序号"
+                          },
+                          "published_at": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "错误响应",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
