@@ -1,6 +1,3 @@
-// Zhipu's search engine codes.
-const MODELS = ["search_std", "search_pro", "search_pro_sogou", "search_pro_quark"];
-
 export const meta = {
   apiVersion: 1,
   key: "feitianbubu_zhipu",
@@ -16,7 +13,8 @@ export const meta = {
   baseUrl: "https://open.bigmodel.cn",
   // Zhipu GLM channels serve web search with the same address and key.
   channelTypes: [26],
-  models: MODELS,
+  // Model names are Zhipu's search engine codes.
+  models: ["search_std", "search_pro", "search_pro_sogou", "search_pro_quark"],
   fetchMode: "per_task",
   usageSchema: {
     search_count: {
@@ -28,7 +26,15 @@ export const meta = {
   },
   routes: [
     // Other vendors' plugins share this path, so only Zhipu's engines are taken here.
-    { method: "POST", path: "/v1/web_search", type: "submit", decode: "decodeSearch", render: "renderSearch", models: MODELS, retainResult: false },
+    {
+      method: "POST",
+      path: "/v1/web_search",
+      type: "submit",
+      decode: "decodeSearch",
+      render: "renderSearch",
+      models: ["search_std", "search_pro", "search_pro_sogou", "search_pro_quark"],
+      retainResult: false,
+    },
     { method: "POST", path: "/api/paas/v4/web_search", type: "submit", decode: "decodeVendor", render: "renderVendor", retainResult: false },
   ],
 };
