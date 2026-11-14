@@ -6,6 +6,8 @@ translations:
 
 **English** | [简体中文](README.zh-CN.md)
 
+> **Deprecated.** Use the [Web Search plugin](https://github.com/feitianbubu/new-api-plugin-search) (`feitianbubu_search`) instead. It serves the same Zhipu engines on the same `POST /v1/web_search`, adds `POST /v1/search` and more vendors, and is the one that gets updates. Switch this plugin off before switching that one on: both claim the Zhipu GLM channel type.
+
 Searches the web with Zhipu's Web Search API and returns the results as JSON, for agents and retrieval pipelines.
 
 ## Channel setup

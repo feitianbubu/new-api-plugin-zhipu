@@ -5,6 +5,8 @@ locale: zh-CN
 
 [English](README.md) | **简体中文**
 
+> **已废弃。** 请改用 [Web Search 插件](https://github.com/feitianbubu/new-api-plugin-search)（`feitianbubu_search`）。它在同一个 `POST /v1/web_search` 上提供相同的智谱引擎，新增 `POST /v1/search` 和更多厂商，后续更新只在那边。两个插件都认领智谱 GLM 渠道类型，启用新插件前请先停用本插件。
+
 调用智谱 Web Search API 搜索网页，以 JSON 返回结果，供智能体和检索流程使用。
 
 ## 渠道设置

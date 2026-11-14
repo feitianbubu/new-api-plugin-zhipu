@@ -1,15 +1,17 @@
 ---
 changelogVersion: 1
 plugin: "feitianbubu_zhipu"
-version: "1.0.0"
+version: "1.0.1"
 locale: "zh-CN"
 ---
 # Changelog
 
-## [1.0.0]
+## [1.0.1]
 
-### Added
+### Deprecated
 
-- 通过 `POST /v1/web_search` 使用 `search_std`、`search_pro`、`search_pro_sogou`、`search_pro_quark` 联网搜索，请求字段厂商中立，返回归一化的结果列表。
-- 通过网关调用智谱自己的 `POST /api/paas/v4/web_search`，原样返回智谱的响应。
-- 每次请求按“联网搜索单价”收一次费。给用户启用前先为每个引擎设置价格。
+- 本插件已废弃。请改用 [Web Search 插件](https://github.com/feitianbubu/new-api-plugin-search)（`feitianbubu_search`）：它在 `POST /v1/web_search` 上提供相同的智谱引擎，并新增 `POST /v1/search` 和更多厂商。启用新插件前请先停用本插件。
+
+### Fixed
+
+- 用计费表达式定价的搜索现在会正常扣费。1.0.0 中这类请求按 0 结算；按次价格不受影响。

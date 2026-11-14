@@ -1,13 +1,13 @@
 export const meta = {
   apiVersion: 1,
   key: "feitianbubu_zhipu",
-  name: "Zhipu Web Search",
+  name: "Zhipu Web Search (deprecated)",
   icon: "Zhipu.Color",
   description: {
-    en: "Zhipu web search API (standard, pro, Sogou and Quark engines)",
-    zh: "智谱联网搜索接口（基础版、高阶版、搜狗、夸克）",
+    en: "Deprecated: use the Web Search plugin (feitianbubu_search), which serves the same Zhipu engines and more vendors",
+    zh: "已废弃：请改用 Web Search 插件（feitianbubu_search），它提供相同的智谱引擎并支持更多厂商",
   },
-  version: "1.0.0",
+  version: "1.0.1",
   author: { name: "feitianbubu", url: "https://github.com/feitianbubu" },
   website: "https://docs.bigmodel.cn/cn/guide/tools/web-search",
   baseUrl: "https://open.bigmodel.cn",
@@ -84,6 +84,9 @@ export function parseSubmitResponse(ctx, resp) {
 export function extractUsage() {
   return { search_count: 1 };
 }
+
+// Without completion facts an immediate result settles at zero under expression pricing.
+export const extractUsageOnComplete = extractUsage;
 
 export function buildQueryRequest() {
   throw new Error("synchronous API has no task to query");

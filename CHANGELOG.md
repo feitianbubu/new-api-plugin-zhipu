@@ -1,17 +1,19 @@
 ---
 changelogVersion: 1
 plugin: "feitianbubu_zhipu"
-version: "1.0.0"
+version: "1.0.1"
 locale: "en"
 translations:
   zh-CN: CHANGELOG.zh-CN.md
 ---
 # Changelog
 
-## [1.0.0]
+## [1.0.1]
 
-### Added
+### Deprecated
 
-- Search the web with `search_std`, `search_pro`, `search_pro_sogou` and `search_pro_quark` through `POST /v1/web_search`, with vendor-neutral request fields and a normalized result list.
-- Call Zhipu's own `POST /api/paas/v4/web_search` through the gateway and get Zhipu's reply unchanged.
-- Charge each request once through the "Web search unit price" field. Set a price for each engine before enabling it for users.
+- This plugin is deprecated. Use the [Web Search plugin](https://github.com/feitianbubu/new-api-plugin-search) (`feitianbubu_search`) instead: it serves the same Zhipu engines on `POST /v1/web_search`, adds `POST /v1/search` and more vendors. Switch this plugin off before switching that one on.
+
+### Fixed
+
+- A search priced with a billing expression is now charged. In 1.0.0 it settled at zero; per-call prices were not affected.
